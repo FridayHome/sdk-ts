@@ -18,7 +18,13 @@ export enum AdvertisementFlag {
 	WiFiError = 0x10,
 }
 
-export function parseManufacturerData(data: number[]): Advertisement {
+export function parseManufacturerData(
+	data: number[]
+): Advertisement | undefined {
+	if (!data || data.length < 9) {
+		return undefined;
+	}
+
 	return {
 		isFriday: BitConverter.toShort(data) === FridayCompanyId,
 		manufacturerId: bytesToHex(data.slice(2, 6)),

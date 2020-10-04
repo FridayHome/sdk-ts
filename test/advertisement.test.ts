@@ -15,6 +15,8 @@ describe('Advertisement', () => {
 				state: 7,
 			} as Advertisement,
 		],
+		[[], undefined],
+		[undefined, undefined],
 	])('parse', (advertisementData, expected) => {
 		expect(parseManufacturerData(advertisementData as number[])).toEqual(
 			expected
