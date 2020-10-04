@@ -26,9 +26,9 @@ export function parseManufacturerData(
 	}
 
 	return {
-		isFriday: BitConverter.toShort(data) === FridayCompanyId,
+		isFriday: BitConverter.toInt16(data) === FridayCompanyId,
 		manufacturerId: bytesToHex(data.slice(2, 6)),
 		flag: data[6],
-		state: BitConverter.toShort(data, 7),
+		state: BitConverter.toInt16(data, 7),
 	};
 }
