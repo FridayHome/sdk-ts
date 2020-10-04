@@ -1,4 +1,5 @@
-import { BitConverter, Bytes } from './byteUtils';
+import { BitConverter } from './BitConverter';
+import { Bytes } from './byteUtils';
 
 export const lockUnoEpoch = new Date(Date.UTC(2015, 0, 1, 0, 0, 0, 0));
 export const lockUnoMaxTime = fromLockUnoTime(0xffff_ffff);
@@ -29,5 +30,5 @@ export function fromLockUnoTime(time: number): Date {
  * @returns the given data as bytes
  */
 export function dateToBytes(date: Date): Bytes {
-	return BitConverter.getBytes(toLockUnoTime(date));
+	return BitConverter.getBytes(toLockUnoTime(date), 4);
 }

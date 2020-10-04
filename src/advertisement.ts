@@ -1,4 +1,5 @@
-import { BitConverter, bytesToHex } from './utils/byteUtils';
+import { BitConverter } from './utils/BitConverter';
+import { bytesToHex } from './utils/byteUtils';
 
 export const FridayCompanyId = 0x041a;
 
