@@ -29,4 +29,12 @@ export class ProtocolV2 implements IProtocol {
 	toBytes(): Bytes {
 		return BitConverter.getBytes(this.sequenceNumber, 2).concat(this.challenge);
 	}
+
+	static parse(bytes: Bytes): ProtocolV2 {
+		if (bytes.length !== 8) {
+			throw new Error(`Bytes must be length 8 to be a protocol V2`);
+		}
+
+		return new ProtocolV2(BitConverter.toInt16(bytes), bytes.slice(2));
+	}
 }

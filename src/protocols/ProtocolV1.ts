@@ -1,6 +1,6 @@
 import { BitConverter } from '../utils/BitConverter';
 import { Bytes } from '../utils/byteUtils';
-import { dateToBytes, lockUnoEpoch } from '../utils/timing';
+import { dateToBytes, fromLockUnoTime, lockUnoEpoch } from '../utils/timing';
 import { IProtocol, ProtocolVersion } from './IProtocol';
 
 /**
@@ -27,6 +27,17 @@ export class ProtocolV1 implements IProtocol {
 		return dateToBytes(this.timestamp).concat(
 			BitConverter.getBytes(this.sequenceNumber, 2),
 			[0, 0] // Reserved values
+		);
+	}
+
+	static parse(bytes: Bytes): ProtocolV1 {
+		if (bytes.length !== 8) {
+			throw new Error('Bytes are the wrong length to be a ProtocolV1');
+		}
+
+		return new ProtocolV1(
+			BitConverter.toInt16(bytes, 4),
+			fromLockUnoTime(BitConverter.toInt32(bytes))
 		);
 	}
 }

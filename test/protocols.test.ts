@@ -17,6 +17,13 @@ describe('Protocol V1', () => {
 	])('toBytes', (protocol: ProtocolV1, bytes: Bytes) => {
 		expect(protocol.toBytes()).toEqual(bytes);
 	});
+
+	test.each([
+		[[0, 0, 0, 0, 1, 0, 0, 0], new ProtocolV1()],
+		[[7, 0, 0, 0, 5, 0, 0, 0], new ProtocolV1(5, fromLockUnoTime(7))],
+	])('parse', (bytes: Bytes, protocol: ProtocolV1) => {
+		expect(ProtocolV1.parse(bytes)).toEqual(protocol);
+	});
 });
 
 describe('Protocol V2', () => {
@@ -38,8 +45,21 @@ describe('Protocol V2', () => {
 
 	test.each([
 		[new ProtocolV2(5, [1, 2, 3, 4, 5, 6]), [5, 0, 1, 2, 3, 4, 5, 6]],
-		[new ProtocolV2(256, [83, 42, 13, 193, 121, 245]), [0, 1, 83, 42, 13, 193, 121, 245]],
+		[
+			new ProtocolV2(256, [83, 42, 13, 193, 121, 245]),
+			[0, 1, 83, 42, 13, 193, 121, 245],
+		],
 	])('toBytes', (protocol: ProtocolV2, bytes: Bytes) => {
 		expect(protocol.toBytes()).toEqual(bytes);
+	});
+
+	test.each([
+		[[5, 0, 1, 2, 3, 4, 5, 6], new ProtocolV2(5, [1, 2, 3, 4, 5, 6])],
+		[
+			[0, 1, 83, 42, 13, 193, 121, 245],
+			new ProtocolV2(256, [83, 42, 13, 193, 121, 245]),
+		],
+	])('parse', (bytes: Bytes, protocol: ProtocolV2) => {
+		expect(ProtocolV2.parse(bytes)).toEqual(protocol);
 	});
 });
