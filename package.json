@@ -1,6 +1,6 @@
 {
 	"version": "0.1.2",
-	"name": "@fridayhome/messages",
+	"name": "@fridayhome/sdk",
 	"private": false,
 	"maintainers": [
 		"Oliver Fleckenstein <oliver@fridayhome.net>"
@@ -8,7 +8,7 @@
 	"license": "MIT",
 	"main": "dist/index.js",
 	"typings": "dist/index.d.ts",
-	"module": "dist/messages.esm.js",
+	"module": "dist/sdk.esm.js",
 	"files": [
 		"dist"
 	],
