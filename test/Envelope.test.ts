@@ -1,6 +1,6 @@
 import { Bytes, fromLockUnoTime, ProtocolV1 } from '../src';
 import { Envelope } from '../src/Envelope';
-import { KnownKeyIDs } from '../src/KeyID';
+import { KnownKeyIDs } from '../src/enums/KeyID';
 import { BasicInfoRequest } from '../src/requests/BasicInfoRequest';
 
 describe('Envelope', () => {

@@ -1,6 +1,6 @@
 import { fromLockUnoTime, ProtocolV1, ProtocolV2 } from '../src';
 import { MessageHeader } from '../src/header/MessageHeader';
-import { MessageType } from '../src/MessageType';
+import { MessageType } from '../src/enums/MessageType';
 import { Bytes } from '../src/utils/byteUtils';
 
 describe('Message header', () => {

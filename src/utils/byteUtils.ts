@@ -1,7 +1,17 @@
 export type Bytes = number[];
 
-export function stringToByteArray(str: string): Bytes {
+/**
+ * Converts a string into an array of bytes
+ */
+export function stringToBytes(str: string): Bytes {
 	return str.split('').map(x => x.charCodeAt(0));
+}
+
+/**
+ * Converts an array of bytes into a string
+ */
+export function bytesToString(bytes: Bytes): string {
+	return bytes.map(x => String.fromCharCode(x)).join('');
 }
 
 /**

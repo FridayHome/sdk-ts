@@ -1,5 +1,5 @@
 import { IMessage } from './IMessage';
-import { KeyID } from './KeyID';
+import { KeyID } from './enums/KeyID';
 import { BitConverter } from './utils/BitConverter';
 import { Bytes } from './utils/byteUtils';
 

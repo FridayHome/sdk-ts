@@ -1,7 +1,7 @@
 import { IMessageHeader } from './header/IMessageHeader';
 import { MessageHeader } from './header/MessageHeader';
 import { IMessage } from './IMessage';
-import { MessageType } from './MessageType';
+import { MessageType } from './enums/MessageType';
 import { IProtocol } from './protocols/IProtocol';
 import { Bytes } from './utils/byteUtils';
 
