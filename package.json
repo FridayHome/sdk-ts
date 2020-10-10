@@ -1,10 +1,13 @@
 {
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"name": "@fridayhome/sdk",
 	"private": false,
 	"maintainers": [
 		"Oliver Fleckenstein <oliver@fridayhome.net>"
 	],
+	"repository": {
+		"url": "https://github.com/FridayHome/sdk-ts"
+	},
 	"license": "MIT",
 	"main": "dist/index.js",
 	"typings": "dist/index.d.ts",
