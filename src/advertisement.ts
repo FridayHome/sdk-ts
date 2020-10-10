@@ -1,3 +1,4 @@
+import { DeviceType } from './enums/DeviceType';
 import { BitConverter } from './utils/BitConverter';
 import { bytesToHex } from './utils/byteUtils';
 
@@ -8,6 +9,7 @@ export interface Advertisement {
 	manufacturerId: string;
 	flag: AdvertisementFlag;
 	state: number;
+	type: DeviceType;
 }
 
 export enum AdvertisementFlag {
@@ -31,5 +33,6 @@ export function parseManufacturerData(
 		manufacturerId: bytesToHex(data.slice(2, 6)),
 		flag: data[6],
 		state: BitConverter.toInt16(data, 7),
+		type: data[9] ?? DeviceType.Uno,
 	};
 }
