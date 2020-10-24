@@ -1,7 +1,7 @@
 import { IMessage } from './IMessage';
 import { KeyID } from './enums/KeyID';
 import { BitConverter } from './utils/BitConverter';
-import { Bytes } from './utils/byteUtils';
+import { bytesConcat } from './utils/byteUtils';
 
 export class Envelope {
 	keyId: number;
@@ -12,10 +12,11 @@ export class Envelope {
 		this.message = message;
 	}
 
-	public toBytes(): Bytes {
+	public toBytes(): Uint8Array {
 		const body = this.message.toBytes();
 
-		return BitConverter.getBytes(body.length, 2).concat(
+		return bytesConcat(
+			BitConverter.getBytes(body.length, 2),
 			BitConverter.getBytes(this.keyId, 2),
 			body
 		);

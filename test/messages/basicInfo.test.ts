@@ -1,13 +1,12 @@
 import {
 	BasicInfoRequest,
 	BasicInfoResponse,
-	Bytes,
 	fromLockUnoTime,
 	IMessage,
 	ProtocolV1,
 } from '../../src';
 
-export const publicKey = [
+export const publicKey = Uint8Array.from([
 	220,
 	235,
 	242,
@@ -40,20 +39,20 @@ export const publicKey = [
 	177,
 	18,
 	120,
-];
+]);
 
 describe('Basic info request', () => {
 	test('create request', () => {
 		expect(
 			new BasicInfoRequest(new ProtocolV1(0, fromLockUnoTime(0))).toBytes()
-		).toEqual([131, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+		).toEqual(Uint8Array.from([131, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 	});
 });
 
 describe('Basic info response', () => {
 	test.each([
 		[
-			[
+			Uint8Array.from([
 				220,
 				235,
 				242,
@@ -130,7 +129,7 @@ describe('Basic info response', () => {
 				0,
 				0,
 				0,
-			],
+			]),
 			new BasicInfoResponse(
 				new ProtocolV1(),
 				159,
@@ -142,7 +141,7 @@ describe('Basic info response', () => {
 				publicKey
 			),
 		],
-	])('parse', (data: Bytes, message: IMessage) => {
+	])('parse', (data: Uint8Array, message: IMessage) => {
 		expect(BasicInfoResponse.parse(message.header.protocol, data)).toEqual(
 			message
 		);

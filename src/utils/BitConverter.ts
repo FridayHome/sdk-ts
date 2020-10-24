@@ -1,5 +1,3 @@
-import { Bytes } from './byteUtils';
-
 /**
  * Utilities for converting byte arrays to numbers.
  *
@@ -9,14 +7,14 @@ export class BitConverter {
 	/**
 	 * @returns The two bytes at index converted to a short.
 	 */
-	public static toInt16(bytes: Bytes, index = 0): number {
+	public static toInt16(bytes: Uint8Array, index = 0): number {
 		return this.toNumber(bytes, 2, index);
 	}
 
 	/**
 	 * @returns the 4 bytes at the given index as a int.
 	 */
-	public static toInt32(bytes: Bytes, index = 0): number {
+	public static toInt32(bytes: Uint8Array, index = 0): number {
 		return this.toNumber(bytes, 4, index);
 	}
 
@@ -28,7 +26,7 @@ export class BitConverter {
 	 * @param index in the bytes array to start reading the number
 	 * @returns the number at the specified index
 	 */
-	public static toNumber(bytes: Bytes, size: number, index = 0): number {
+	public static toNumber(bytes: Uint8Array, size: number, index = 0): number {
 		return bytes
 			.slice(index, index + size)
 			.reverse()
@@ -42,8 +40,8 @@ export class BitConverter {
 	 * @param minSize the minimum number of entries in the byte array
 	 * @returns the number represented as a array of bytes
 	 */
-	public static getBytes(number: number, minSize = 0): Bytes {
-		const bytes: Bytes = [];
+	public static getBytes(number: number, minSize: number): Uint8Array {
+		const bytes: number[] = [];
 
 		let i = 0;
 		while (i++ < minSize || number > 0) {
@@ -51,6 +49,6 @@ export class BitConverter {
 			number = Math.floor(number / 256);
 		}
 
-		return bytes;
+		return Uint8Array.from(bytes);
 	}
 }

@@ -22,7 +22,7 @@ export enum AdvertisementFlag {
 }
 
 export function parseManufacturerData(
-	data: number[]
+	data: Uint8Array | undefined
 ): Advertisement | undefined {
 	if (!data || data.length < 9) {
 		return undefined;

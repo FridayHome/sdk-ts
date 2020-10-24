@@ -8,7 +8,7 @@ import { DeviceType } from '../src/enums/DeviceType';
 describe('Advertisement', () => {
 	test.each([
 		[
-			[26, 4, 184, 142, 211, 105, 2, 7, 0],
+			Uint8Array.from([26, 4, 184, 142, 211, 105, 2, 7, 0]),
 			{
 				isFriday: true,
 				manufacturerId: 'B88ED369',
@@ -18,7 +18,7 @@ describe('Advertisement', () => {
 			} as Advertisement,
 		],
 		[
-			[26, 4, 62, 213, 156, 3, 1, 0, 4, 32],
+			Uint8Array.from([26, 4, 62, 213, 156, 3, 1, 0, 4, 32]),
 			{
 				isFriday: true,
 				flag: AdvertisementFlag.SetupAllowed,
@@ -27,10 +27,10 @@ describe('Advertisement', () => {
 				type: DeviceType.Duo,
 			},
 		],
-		[[], undefined],
+		[Uint8Array.from([]), undefined],
 		[undefined, undefined],
 	])('parse', (advertisementData, expected) => {
-		expect(parseManufacturerData(advertisementData as number[])).toEqual(
+		expect(parseManufacturerData(advertisementData)).toEqual(
 			expected
 		);
 	});

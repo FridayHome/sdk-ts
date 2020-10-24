@@ -1,6 +1,5 @@
-import { Bytes } from '../src/utils/byteUtils';
 import {
-	dateToBytes,
+	dateToUint8Array,
 	fromLockUnoTime,
 	lockUnoEpoch,
 	lockUnoMaxTime,
@@ -40,9 +39,12 @@ describe('Timing', () => {
 	);
 
 	test.each([
-		[new Date(Date.UTC(2020, 2, 4, 6, 7, 25)), [0x9d, 0xb7, 0xba, 0x09]],
-		[lockUnoEpoch, [0, 0, 0, 0]],
-	])('date to bytes', (date: Date, bytes: Bytes) => {
-		expect(dateToBytes(date)).toEqual(bytes);
+		[
+			new Date(Date.UTC(2020, 2, 4, 6, 7, 25)),
+			Uint8Array.from([0x9d, 0xb7, 0xba, 0x09]),
+		],
+		[lockUnoEpoch, Uint8Array.from([0, 0, 0, 0])],
+	])('date to bytes', (date: Date, bytes: Uint8Array) => {
+		expect(dateToUint8Array(date)).toEqual(bytes);
 	});
 });

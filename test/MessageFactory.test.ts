@@ -1,13 +1,13 @@
 import { ProtocolV1 } from '../src';
 import { MessageFactory } from '../src/MessageFactory';
 import { BasicInfoResponse } from '../src/responses';
-import { Bytes } from '../src/utils/byteUtils';
+
 import { publicKey } from './messages/basicInfo.test';
 
 describe('Message factory', () => {
 	test.each([
 		[
-			[
+			Uint8Array.from([
 				132,
 				0,
 				1,
@@ -96,7 +96,7 @@ describe('Message factory', () => {
 				0,
 				0,
 				0,
-			],
+			]),
 			new BasicInfoResponse(
 				new ProtocolV1(0, new Date(Date.UTC(2015, 0, 1, 18, 14, 28))),
 				159,
@@ -108,7 +108,7 @@ describe('Message factory', () => {
 				publicKey
 			),
 		],
-	])('parse', (bytes: Bytes, message) => {
+	])('parse', (bytes: Uint8Array, message) => {
 		expect(MessageFactory.parse(bytes)).toEqual(message);
 	});
 });

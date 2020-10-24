@@ -1,7 +1,7 @@
 import { MessageType } from '../enums/MessageType';
 import { IProtocol } from '../protocols/IProtocol';
 import { BitConverter } from '../utils/BitConverter';
-import { Bytes } from '../utils/byteUtils';
+import { bytesConcat } from '../utils/byteUtils';
 import { IMessageHeader } from './IMessageHeader';
 
 export class MessageHeader implements IMessageHeader {
@@ -13,8 +13,9 @@ export class MessageHeader implements IMessageHeader {
 		this.protocol = protocol;
 	}
 
-	toBytes(): Bytes {
-		return BitConverter.getBytes(this.messageType, 2).concat(
+	toBytes(): Uint8Array {
+		return bytesConcat(
+			BitConverter.getBytes(this.messageType, 2),
 			BitConverter.getBytes(this.protocol.Version, 2),
 			this.protocol.toBytes()
 		);

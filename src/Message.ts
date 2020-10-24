@@ -3,7 +3,7 @@ import { MessageHeader } from './header/MessageHeader';
 import { IMessage } from './IMessage';
 import { MessageType } from './enums/MessageType';
 import { IProtocol } from './protocols/IProtocol';
-import { Bytes } from './utils/byteUtils';
+import { bytesConcat } from './utils/byteUtils';
 
 /**
  * Message which can be send or received by the lock.
@@ -15,9 +15,9 @@ export abstract class Message implements IMessage {
 		this.header = new MessageHeader(type, protocol);
 	}
 
-	public toBytes(): Bytes {
-		return this.header.toBytes().concat(this.createBody());
+	public toBytes(): Uint8Array {
+		return bytesConcat(this.header.toBytes(), this.createBody());
 	}
 
-	protected abstract createBody(): Bytes;
+	protected abstract createBody(): Uint8Array;
 }

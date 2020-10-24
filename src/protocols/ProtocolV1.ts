@@ -1,6 +1,11 @@
 import { BitConverter } from '../utils/BitConverter';
-import { Bytes } from '../utils/byteUtils';
-import { dateToBytes, fromLockUnoTime, lockUnoEpoch } from '../utils/timing';
+import { bytesConcat } from '../utils/byteUtils';
+
+import {
+	dateToUint8Array,
+	fromLockUnoTime,
+	lockUnoEpoch,
+} from '../utils/timing';
 import { IProtocol, ProtocolVersion } from './IProtocol';
 
 /**
@@ -23,16 +28,17 @@ export class ProtocolV1 implements IProtocol {
 		this.sequenceNumber = sequenceNumber;
 	}
 
-	toBytes(): Bytes {
-		return dateToBytes(this.timestamp).concat(
+	toBytes(): Uint8Array {
+		return bytesConcat(
+			dateToUint8Array(this.timestamp),
 			BitConverter.getBytes(this.sequenceNumber, 2),
-			[0, 0] // Reserved values
+			Uint8Array.from([0, 0]) // Reserved values
 		);
 	}
 
-	static parse(bytes: Bytes): ProtocolV1 {
+	static parse(bytes: Uint8Array): ProtocolV1 {
 		if (bytes.length !== 8) {
-			throw new Error('Bytes are the wrong length to be a ProtocolV1');
+			throw new Error('Uint8Array are the wrong length to be a ProtocolV1');
 		}
 
 		return new ProtocolV1(

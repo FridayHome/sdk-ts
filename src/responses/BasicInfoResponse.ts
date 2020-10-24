@@ -1,9 +1,8 @@
 import { MessageType } from '../enums/MessageType';
 import { Message } from '../Message';
 import { IProtocol } from '../protocols/IProtocol';
-import { ProtocolV1 } from '../protocols/ProtocolV1';
 import { BitConverter } from '../utils/BitConverter';
-import { Bytes } from '../utils/byteUtils';
+
 
 export class BasicInfoResponse extends Message {
 	softdevice: number;
@@ -11,7 +10,7 @@ export class BasicInfoResponse extends Message {
 	bootloader: number;
 	wifi: number;
 	hardware: number;
-	publicKey: Bytes;
+	publicKey: Uint8Array;
 	battery: number;
 
 	constructor(
@@ -22,7 +21,7 @@ export class BasicInfoResponse extends Message {
 		wifi: number,
 		hardware: number,
 		battery: number,
-		publicKey: Bytes
+		publicKey: Uint8Array
 	) {
 		super(MessageType.BasicInfoResponse, protocol);
 		this.softdevice = softdevice;
@@ -34,11 +33,11 @@ export class BasicInfoResponse extends Message {
 		this.publicKey = publicKey;
 	}
 
-	protected createBody(): Bytes {
+	protected createBody(): Uint8Array {
 		throw new Error('Method not implemented.');
 	}
 
-	public static parse(protocol: IProtocol, bytes: Bytes): BasicInfoResponse {
+	public static parse(protocol: IProtocol, bytes: Uint8Array): BasicInfoResponse {
 		let index = 0;
 		const publicKey = bytes.slice(0, 32);
 		index += 32;

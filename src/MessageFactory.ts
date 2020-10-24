@@ -5,10 +5,10 @@ import { ProtocolV1 } from './protocols/ProtocolV1';
 import { ProtocolV2 } from './protocols/ProtocolV2';
 import { BasicInfoResponse } from './responses';
 import { BitConverter } from './utils/BitConverter';
-import { Bytes } from './utils/byteUtils';
+
 
 export class MessageFactory {
-	public static parse(bytes: Bytes): IMessage {
+	public static parse(bytes: Uint8Array): IMessage {
 		let index = 0;
 		const type = BitConverter.toInt16(bytes, index);
 		index += 2;
@@ -30,7 +30,7 @@ export class MessageFactory {
 		throw new Error(`Message type ${type} is defined but not yet supported`);
 	}
 
-	public static parseProtocol(version: number, bytes: Bytes): IProtocol {
+	public static parseProtocol(version: number, bytes: Uint8Array): IProtocol {
 		switch (version) {
 			case 1:
 				return ProtocolV1.parse(bytes.slice(0, 8));

@@ -1,4 +1,4 @@
-import { Bytes } from '../utils/byteUtils';
+
 
 export interface IProtocol {
   Version: ProtocolVersion;
@@ -6,7 +6,7 @@ export interface IProtocol {
   /**
    * @returns the byte representation of this protocol
    */
-	toBytes(): Bytes;
+	toBytes(): Uint8Array;
 }
 
 export type ProtocolVersion = 1 | 2;

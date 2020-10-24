@@ -1,5 +1,5 @@
 import { IMessageHeader } from './header/IMessageHeader';
-import { Bytes } from './utils/byteUtils';
+
 
 export interface IMessage {
   /**
@@ -10,5 +10,5 @@ export interface IMessage {
   /**
    * Convert the message to a byte array.
    */
-  toBytes(): Bytes;
+  toBytes(): Uint8Array;
 }
