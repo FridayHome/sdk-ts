@@ -7,7 +7,7 @@ export class ChallengeRequest extends Message {
 		super(MessageType.ChallengeRequest, protocol);
 	}
 
-	protected createBody(): Uint8Array {
+	public createBody(): Uint8Array {
 		return new Uint8Array();
 	}
 }

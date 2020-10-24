@@ -7,7 +7,7 @@ export class BasicInfoRequest extends Message {
 		super(MessageType.BasicInfoRequest, protocol);
 	}
 
-	protected createBody(): Uint8Array {
+	public createBody(): Uint8Array {
 		return new Uint8Array();
 	}
 }

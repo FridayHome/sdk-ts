@@ -1,6 +1,5 @@
 import { BitConverter } from './BitConverter';
 
-
 export const lockUnoEpoch = new Date(Date.UTC(2015, 0, 1, 0, 0, 0, 0));
 export const lockUnoMaxTime = fromLockUnoTime(0xffff_ffff);
 
@@ -29,6 +28,6 @@ export function fromLockUnoTime(time: number): Date {
  * @param date to convert to bytes
  * @returns the given data as bytes
  */
-export function dateToUint8Array(date: Date): Uint8Array {
+export function dateToBytes(date: Date): Uint8Array {
 	return BitConverter.getBytes(toLockUnoTime(date), 4);
 }

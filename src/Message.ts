@@ -19,5 +19,5 @@ export abstract class Message implements IMessage {
 		return bytesConcat(this.header.toBytes(), this.createBody());
 	}
 
-	protected abstract createBody(): Uint8Array;
+	public abstract createBody(): Uint8Array;
 }

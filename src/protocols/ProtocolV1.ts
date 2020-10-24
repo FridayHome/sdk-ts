@@ -2,7 +2,7 @@ import { BitConverter } from '../utils/BitConverter';
 import { bytesConcat } from '../utils/byteUtils';
 
 import {
-	dateToUint8Array,
+	dateToBytes,
 	fromLockUnoTime,
 	lockUnoEpoch,
 } from '../utils/timing';
@@ -30,7 +30,7 @@ export class ProtocolV1 implements IProtocol {
 
 	toBytes(): Uint8Array {
 		return bytesConcat(
-			dateToUint8Array(this.timestamp),
+			dateToBytes(this.timestamp),
 			BitConverter.getBytes(this.sequenceNumber, 2),
 			Uint8Array.from([0, 0]) // Reserved values
 		);

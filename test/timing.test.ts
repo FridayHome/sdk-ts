@@ -1,5 +1,5 @@
 import {
-	dateToUint8Array,
+	dateToBytes,
 	fromLockUnoTime,
 	lockUnoEpoch,
 	lockUnoMaxTime,
@@ -45,6 +45,6 @@ describe('Timing', () => {
 		],
 		[lockUnoEpoch, Uint8Array.from([0, 0, 0, 0])],
 	])('date to bytes', (date: Date, bytes: Uint8Array) => {
-		expect(dateToUint8Array(date)).toEqual(bytes);
+		expect(dateToBytes(date)).toEqual(bytes);
 	});
 });

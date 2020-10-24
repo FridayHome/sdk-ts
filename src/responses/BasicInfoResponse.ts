@@ -33,7 +33,7 @@ export class BasicInfoResponse extends Message {
 		this.publicKey = publicKey;
 	}
 
-	protected createBody(): Uint8Array {
+	public createBody(): Uint8Array {
 		throw new Error('Method not implemented.');
 	}
 
