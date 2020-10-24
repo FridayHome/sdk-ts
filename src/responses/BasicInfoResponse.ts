@@ -3,7 +3,6 @@ import { Message } from '../Message';
 import { IProtocol } from '../protocols/IProtocol';
 import { BitConverter } from '../utils/BitConverter';
 
-
 export class BasicInfoResponse extends Message {
 	softdevice: number;
 	application: number;
