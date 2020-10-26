@@ -12,7 +12,7 @@ describe('Message factory', () => {
 				0,
 				1,
 				0,
-				0,
+				123,
 				0,
 				0,
 				0,
@@ -98,7 +98,7 @@ describe('Message factory', () => {
 				0,
 			]),
 			new BasicInfoResponse(
-				new ProtocolV1(0, new Date(Date.UTC(2015, 0, 1, 18, 14, 28))),
+				new ProtocolV1(123, new Date(Date.UTC(2015, 0, 1, 18, 14, 28))),
 				159,
 				100,
 				21,

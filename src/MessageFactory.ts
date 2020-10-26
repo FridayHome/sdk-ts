@@ -18,12 +18,16 @@ export class MessageFactory {
 
 		const protocolVersion = BitConverter.toInt16(bytes, index);
 		index += 2;
-		const protocol = MessageFactory.parseProtocol(protocolVersion, bytes);
+		const protocol = MessageFactory.parseProtocol(
+			protocolVersion,
+			bytes.slice(index)
+		);
 		index += 8;
 
 		switch (type) {
 			case MessageType.BasicInfoResponse:
 				return BasicInfoResponse.parse(protocol, bytes.slice(index));
+			case MessageType.NonAuthenticatedCommandResponse:
 			case MessageType.CommandResponse:
 				return CommandResponse.parse(protocol, bytes.slice(index));
 		}

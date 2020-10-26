@@ -28,7 +28,7 @@ export class Envelope {
 		publicKey: Uint8Array
 	): Promise<Uint8Array> {
 		const body = await Encryption.encrypt(
-			this.toBytes(),
+			this.message.toBytes(),
 			privateKey,
 			publicKey
 		);
