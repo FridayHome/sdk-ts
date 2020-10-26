@@ -5,7 +5,7 @@ import { IEncryptorMock } from './mocks/IEncryptorMock';
 
 describe('Encryption', () => {
 	// Encryption mock
-	Encryption.encryptor = IEncryptorMock;
+	Encryption.setEncryptor(IEncryptorMock);
 
 	test('message', async () => {
 		await sodium.ready;

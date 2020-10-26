@@ -19,7 +19,11 @@ export interface IEncryptor {
 export const NONCE_BYTES = 24;
 
 export class Encryption {
-	static encryptor: IEncryptor;
+	private static encryptor: IEncryptor;
+
+	public static setEncryptor(encryptor: IEncryptor) {
+		this.encryptor = encryptor;
+	}
 
 	/**
 	 * Encrypt and sign a byte array with a given
