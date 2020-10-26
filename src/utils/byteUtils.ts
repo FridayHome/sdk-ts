@@ -1,5 +1,3 @@
-import sodium from 'libsodium-wrappers';
-
 /**
  * Converts a string into an array of bytes
  */
@@ -8,10 +6,24 @@ export function stringToBytes(str: string): Uint8Array {
 }
 
 /**
+ * Converts a hex string into a byte array.
+ */
+export function hexToBytes(hex: string): Uint8Array {
+	const bytes = [];
+	for (let c = 0; c < hex.length; c += 2) {
+		bytes.push(parseInt(hex.substr(c, 2), 16));
+	}
+	return Uint8Array.from(bytes);
+}
+
+/**
  * @returns The bytes formatted as a hex string.
  */
 export function bytesToHex(bytes: Uint8Array): string {
-	return sodium.to_hex(bytes).toUpperCase();
+	return Array.prototype.map
+		.call(bytes, x => ('00' + (x & 0xff).toString(16)).slice(-2))
+		.join('')
+		.toUpperCase();
 }
 
 /**

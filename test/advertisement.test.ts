@@ -30,8 +30,6 @@ describe('Advertisement', () => {
 		[Uint8Array.from([]), undefined],
 		[undefined, undefined],
 	])('parse', (advertisementData, expected) => {
-		expect(parseManufacturerData(advertisementData)).toEqual(
-			expected
-		);
+		expect(parseManufacturerData(advertisementData)).toEqual(expected);
 	});
 });

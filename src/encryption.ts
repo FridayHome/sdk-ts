@@ -1,7 +1,26 @@
-import sodium from 'libsodium-wrappers';
 import { bytesConcat } from './utils/byteUtils';
 
+export interface IEncryptor {
+	encrypt: (
+		message: Uint8Array,
+		nonce: Uint8Array,
+		publicKey: Uint8Array,
+		privateKey: Uint8Array
+	) => Promise<Uint8Array>;
+	decrypt: (
+		message: Uint8Array,
+		nonce: Uint8Array,
+		privateKey: Uint8Array,
+		publicKey: Uint8Array
+	) => Promise<Uint8Array>;
+	generateNonce: () => Promise<Uint8Array>;
+}
+
+export const NONCE_BYTES = 24;
+
 export class Encryption {
+	static encryptor: IEncryptor;
+
 	/**
 	 * Encrypt and sign a byte array with a given
 	 * public and private key.
@@ -14,16 +33,17 @@ export class Encryption {
 	 * this in production, as a new nonce should be generated
 	 * for each message.
 	 */
-	public static encrypt(
+	public static async encrypt(
 		message: Uint8Array,
 		privateKey: Uint8Array,
 		publicKey: Uint8Array,
 		nonce: Uint8Array | undefined = undefined
-	): Uint8Array {
+	): Promise<Uint8Array> {
 		if (!nonce) {
-			nonce = sodium.randombytes_buf(sodium.crypto_box_NONCEBYTES);
+			nonce = await this.encryptor.generateNonce();
 		}
-		const encrypted = sodium.crypto_box_easy(
+
+		const encrypted = await this.encryptor.encrypt(
 			message,
 			nonce,
 			publicKey,
@@ -40,19 +60,19 @@ export class Encryption {
 	 * @param privateKey of the receiver
 	 * @param publicKey of the sender
 	 */
-	public static decrypt(
+	public static async decrypt(
 		message: Uint8Array,
 		privateKey: Uint8Array,
 		publicKey: Uint8Array
-	): Uint8Array {
-		const nonce = message.slice(0, sodium.crypto_box_NONCEBYTES);
-		const cipherText = message.slice(sodium.crypto_box_NONCEBYTES);
+	): Promise<Uint8Array> {
+		const nonce = message.slice(0, NONCE_BYTES);
+		const cipherText = message.slice(NONCE_BYTES);
 
-		return sodium.crypto_box_open_easy(
+		return await this.encryptor.decrypt(
 			cipherText,
 			nonce,
-			publicKey,
-			privateKey
+			privateKey,
+			publicKey
 		);
 	}
 }

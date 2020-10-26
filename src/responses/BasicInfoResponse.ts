@@ -36,7 +36,10 @@ export class BasicInfoResponse extends Message {
 		throw new Error('Method not implemented.');
 	}
 
-	public static parse(protocol: IProtocol, bytes: Uint8Array): BasicInfoResponse {
+	public static parse(
+		protocol: IProtocol,
+		bytes: Uint8Array
+	): BasicInfoResponse {
 		let index = 0;
 		const publicKey = bytes.slice(0, 32);
 		index += 32;

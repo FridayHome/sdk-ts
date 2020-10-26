@@ -6,7 +6,6 @@ import { ProtocolV2 } from './protocols/ProtocolV2';
 import { BasicInfoResponse } from './responses';
 import { BitConverter } from './utils/BitConverter';
 
-
 export class MessageFactory {
 	public static parse(bytes: Uint8Array): IMessage {
 		let index = 0;

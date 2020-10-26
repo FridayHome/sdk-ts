@@ -7,12 +7,9 @@ export * from './MessageFactory';
 export * from './IMessage';
 export * from './responses';
 export * from './requests';
-
-export * from './enums/DeviceType';
-export * from './enums/BluetoothConstants';
-export * from './enums/KeyID';
-export * from './enums/MessageType';
+export * from './enums';
 
 export * from './utils/timing';
 export * from './utils/byteUtils';
 export * from './utils/BitConverter';
+export * from './encryption';

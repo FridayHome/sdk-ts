@@ -1,11 +1,7 @@
 import { BitConverter } from '../utils/BitConverter';
 import { bytesConcat } from '../utils/byteUtils';
 
-import {
-	dateToBytes,
-	fromLockUnoTime,
-	lockUnoEpoch,
-} from '../utils/timing';
+import { dateToBytes, fromLockUnoTime, lockUnoEpoch } from '../utils/timing';
 import { IProtocol, ProtocolVersion } from './IProtocol';
 
 /**
