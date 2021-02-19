@@ -3,7 +3,11 @@ import { IMessage } from './IMessage';
 import { IProtocol } from './protocols/IProtocol';
 import { ProtocolV1 } from './protocols/ProtocolV1';
 import { ProtocolV2 } from './protocols/ProtocolV2';
-import { BasicInfoResponse, CommandResponse, LockStateResponse } from './responses';
+import {
+	BasicInfoResponse,
+	CommandResponse,
+	LockStateResponse,
+} from './responses';
 import { BitConverter } from './utils/BitConverter';
 
 export class MessageFactory {

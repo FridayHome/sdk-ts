@@ -1,6 +1,6 @@
 export enum LockState {
-  Jammed = 0,
-  Secured,
-  Unknown,
-  Unsecured
+	Jammed = 0,
+	Secured,
+	Unknown,
+	Unsecured,
 }
