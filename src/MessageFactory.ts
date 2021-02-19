@@ -3,7 +3,7 @@ import { IMessage } from './IMessage';
 import { IProtocol } from './protocols/IProtocol';
 import { ProtocolV1 } from './protocols/ProtocolV1';
 import { ProtocolV2 } from './protocols/ProtocolV2';
-import { BasicInfoResponse, CommandResponse } from './responses';
+import { BasicInfoResponse, CommandResponse, LockStateResponse } from './responses';
 import { BitConverter } from './utils/BitConverter';
 
 export class MessageFactory {
@@ -13,7 +13,7 @@ export class MessageFactory {
 		index += 2;
 
 		if (!(type in MessageType)) {
-			throw new Error(`Unknown message type ${type}`);
+			throw new Error(`Unknown message type ${type}. bytes: ${bytes}`);
 		}
 
 		const protocolVersion = BitConverter.toInt16(bytes, index);
@@ -30,6 +30,8 @@ export class MessageFactory {
 			case MessageType.NonAuthenticatedCommandResponse:
 			case MessageType.CommandResponse:
 				return CommandResponse.parse(protocol, bytes.slice(index));
+			case MessageType.LockStateResponse:
+				return LockStateResponse.parse(protocol, bytes.slice(index));
 		}
 
 		throw new Error(`Message type ${type} is defined but not yet supported`);
