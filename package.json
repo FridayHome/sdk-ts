@@ -1,6 +1,6 @@
 {
-	"version": "0.2.6",
-	"name": "@fridayhome/sdk",
+	"version": "0.2.7",
+	"name": "@marblehq/friday-sdk",
 	"private": false,
 	"maintainers": [
 		"Oliver Fleckenstein <oliver@fridayhome.net>"
