@@ -7,6 +7,7 @@ import {
 	BasicInfoResponse,
 	CommandResponse,
 	LockStateResponse,
+	SetupResponse,
 } from './responses';
 import { BitConverter } from './utils/BitConverter';
 
@@ -36,6 +37,8 @@ export class MessageFactory {
 				return CommandResponse.parse(protocol, bytes.slice(index));
 			case MessageType.LockStateResponse:
 				return LockStateResponse.parse(protocol, bytes.slice(index));
+			case MessageType.SetupResponse:
+				return SetupResponse.parse(protocol, bytes.slice(index));
 		}
 
 		throw new Error(`Message type ${type} is defined but not yet supported`);
