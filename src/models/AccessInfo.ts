@@ -1,9 +1,11 @@
+import { BitConverter } from '../utils/BitConverter';
 import {
 	KeyKind,
 	PrivilegeKind,
 	RecurringKind,
 	RestrictionKind,
 } from '../enums';
+import { bytesConcat } from '../utils/byteUtils';
 
 export class AccessInfo {
 	privilege: PrivilegeKind;
@@ -23,9 +25,12 @@ export class AccessInfo {
 		this.recurrence = recurrence;
 	}
 
-	getFlags(): number {
-		return parseInt(
-			`${this.privilege}${this.key}${this.restriction}${this.recurrence}`
+	getFlags(): Uint8Array {
+		return bytesConcat(
+			BitConverter.getBytes(this.privilege, 1),
+			BitConverter.getBytes(this.key, 1),
+			BitConverter.getBytes(this.restriction, 1),
+			BitConverter.getBytes(this.recurrence, 1)
 		);
 	}
 }

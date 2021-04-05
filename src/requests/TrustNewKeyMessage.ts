@@ -34,7 +34,7 @@ export class TrustNewKeyMessage extends Message {
 			dateToBytes(this.keyExpiry),
 			dateToBytes(this.messageExpiry),
 			BitConverter.getBytes(this.keySlot, 2),
-			BitConverter.getBytes(this.access.getFlags(), 4),
+			this.access.getFlags(),
 			BitConverter.getBytes(0, 4),
 			this.publicKey
 		);
