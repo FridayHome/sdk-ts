@@ -2,7 +2,7 @@ import { Message } from '../Message';
 import { MessageType } from '../enums/MessageType';
 import { EventStatus } from '../enums/EventStatus';
 import { IProtocol } from '../protocols/IProtocol';
-import { BitConverter } from 'utils/BitConverter';
+import { BitConverter } from '../utils/BitConverter';
 
 export class EventReportMessage extends Message {
 	responseTo: MessageType;
