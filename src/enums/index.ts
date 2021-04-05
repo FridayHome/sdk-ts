@@ -5,3 +5,4 @@ export * from './KeyID';
 export * from './LockOperation';
 export * from './MessageType';
 export * from './LockState';
+export * from './EventStatus';
