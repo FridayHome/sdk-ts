@@ -4,7 +4,7 @@ import { IProtocol } from '../protocols/IProtocol';
 import { AccessInfo } from '../models';
 import { bytesConcat } from '../utils/byteUtils';
 import { dateToBytes } from '../utils/timing';
-import { BitConverter } from 'utils/BitConverter';
+import { BitConverter } from '../utils/BitConverter';
 
 export class TrustNewKeyMessage extends Message {
 	keyExpiry: Date;
