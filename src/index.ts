@@ -8,6 +8,7 @@ export * from './IMessage';
 export * from './responses';
 export * from './requests';
 export * from './enums';
+export * from './models';
 
 export * from './utils/timing';
 export * from './utils/byteUtils';
