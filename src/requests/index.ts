@@ -6,3 +6,4 @@ export * from './SetupRequestMessage';
 export * from './SetupCodeMessage';
 export * from './ContinueSetupProcessMessage';
 export * from './TrustNewKeyMessage';
+export * from './ConfigurationStepMessage';

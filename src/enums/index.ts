@@ -10,3 +10,4 @@ export * from './PrivilegeKind';
 export * from './RecurringKind';
 export * from './RestrictionKind';
 export * from './KeyKind';
+export * from './ConfigurationStep';
