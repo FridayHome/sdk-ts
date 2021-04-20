@@ -1,12 +1,12 @@
 {
-	"version": "0.1.5",
-	"name": "@fridayhome/sdk",
+	"version": "0.3.0",
+	"name": "@marblehq/friday-sdk",
 	"private": false,
 	"maintainers": [
 		"Oliver Fleckenstein <oliver@fridayhome.net>"
 	],
 	"repository": {
-		"url": "https://github.com/FridayHome/sdk-ts"
+		"url": "https://github.com/marblehq/sdk-ts.git"
 	},
 	"license": "MIT",
 	"main": "dist/index.js",
